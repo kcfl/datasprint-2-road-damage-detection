@@ -1,0 +1,102 @@
+{
+  "municipalities": [
+    {
+      "id": "mcc_mysuru",
+      "city": "Mysuru",
+      "name": "Mysuru City Corporation (MCC)",
+      "aliases": ["mysuru", "mysore", "chamundi", "karnataka south"],
+      "grievance_email": "commissionermcc@gmail.com",
+      "helpline": "0821-2418800 / 0821-2440890",
+      "portal_url": "https://mysurucitycorporation.co.in",
+      "state": "Karnataka"
+    },
+    {
+      "id": "bbmp_bengaluru",
+      "city": "Bengaluru",
+      "name": "Bruhat Bengaluru Mahanagara Palike (BBMP)",
+      "aliases": ["bengaluru", "bangalore", "bengaluru urban", "bengaluru rural", "whitefield", "koramangala", "indiranagar", "jayanagar", "hebbal"],
+      "grievance_email": "comm@bbmp.gov.in",
+      "helpline": "080-22660000 / 1533",
+      "portal_url": "https://bbmp.gov.in",
+      "state": "Karnataka"
+    },
+    {
+      "id": "mcd_delhi",
+      "city": "Delhi",
+      "name": "Municipal Corporation of Delhi (MCD)",
+      "aliases": ["delhi", "new delhi", "nct of delhi", "dwarka", "rohini", "saket", "karol bagh", "connaught place"],
+      "grievance_email": "mcd-ithelpdesk@mcd.nic.in",
+      "helpline": "155305 / 011-23225211",
+      "portal_url": "https://mcdonline.nic.in",
+      "state": "Delhi"
+    },
+    {
+      "id": "bmc_mumbai",
+      "city": "Mumbai",
+      "name": "Brihanmumbai Municipal Corporation (BMC)",
+      "aliases": ["mumbai", "mumbai suburban", "bombay", "thane", "navi mumbai", "bandra", "andheri", "colaba", "borivali"],
+      "grievance_email": "mc@mcgm.gov.in",
+      "helpline": "1916 / 022-22694725",
+      "portal_url": "https://portal.mcgm.gov.in",
+      "state": "Maharashtra"
+    },
+    {
+      "id": "gmc_guwahati",
+      "city": "Guwahati",
+      "name": "Guwahati Municipal Corporation (GMC)",
+      "aliases": ["guwahati", "kamrup", "kamrup metropolitan", "dispur", "assam"],
+      "grievance_email": "commissionergmc@gmail.com",
+      "helpline": "0361-2540525 / 8811007000",
+      "portal_url": "https://gmc.assam.gov.in",
+      "state": "Assam"
+    },
+    {
+      "id": "pmc_pune",
+      "city": "Pune",
+      "name": "Pune Municipal Corporation (PMC)",
+      "aliases": ["pune", "poona", "kothrud", "hadapsar", "hinjewadi", "viman nagar", "shivajinagar", "wakad"],
+      "grievance_email": "info@punecorporation.org",
+      "helpline": "1800-1030-222 / 020-25501000",
+      "portal_url": "https://pmc.gov.in",
+      "state": "Maharashtra"
+    },
+    {
+      "id": "ghmc_hyderabad",
+      "city": "Hyderabad",
+      "name": "Greater Hyderabad Municipal Corporation (GHMC)",
+      "aliases": ["hyderabad", "secunderabad", "cyberabad", "telangana", "hitec city", "gachibowli", "jubilee hills", "banjara hills"],
+      "grievance_email": "commissioner-ghmc@gov.in",
+      "helpline": "040-21111111 / 155304",
+      "portal_url": "https://www.ghmc.gov.in",
+      "state": "Telangana"
+    },
+    {
+      "id": "gcc_chennai",
+      "city": "Chennai",
+      "name": "Greater Chennai Corporation (GCC)",
+      "aliases": ["chennai", "madras", "adyar", "t nagar", "anna nagar", "mylapore", "velachery", "tambaram"],
+      "grievance_email": "commissioner@chennaicorporation.gov.in",
+      "helpline": "1913 / 044-25619200",
+      "portal_url": "https://chennaicorporation.gov.in",
+      "state": "Tamil Nadu"
+    },
+    {
+      "id": "kmc_kolkata",
+      "city": "Kolkata",
+      "name": "Kolkata Municipal Corporation (KMC)",
+      "aliases": ["kolkata", "calcutta", "howrah", "salt lake", "new town", "ballygunge", "alipore", "park street"],
+      "grievance_email": "mpl.comm.kmc@gmail.com",
+      "helpline": "033-2286-1000 / 155359",
+      "portal_url": "https://www.kmcgov.in",
+      "state": "West Bengal"
+    }
+  ],
+  "default": {
+    "name": "Public Works & Road Maintenance Grievance Cell",
+    "city": "Local Municipality",
+    "grievance_email": "grievance-roads@municipal.gov.in",
+    "helpline": "112 / Local Municipal Control Room",
+    "portal_url": "https://pgportal.gov.in",
+    "state": "National / State Jurisdiction"
+  }
+}

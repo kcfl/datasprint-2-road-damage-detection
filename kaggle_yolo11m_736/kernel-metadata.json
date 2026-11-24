@@ -1,0 +1,17 @@
+{
+  "id": "datasprint-2-yolo11m-736",
+  "title": "DataSprint 2 YOLO11m 736 Training",
+  "code_file": "train_yolo11m_736.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": "true",
+  "enable_gpu": "true",
+  "enable_tpu": "false",
+  "enable_internet": "true",
+  "dataset_sources": [],
+  "competition_sources": [
+    "datasprint-2-road-damage-detection"
+  ],
+  "kernel_sources": [],
+  "model_sources": []
+}

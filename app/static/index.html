@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Civic Road Damage Grievance Portal | Automated AI Inspection</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top App Navigation -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand">
+        <span class="brand-icon">🛣️</span>
+        <div>
+          <h1>Civic Road Grievance Portal</h1>
+          <p class="subtitle">AI Road Damage Audit & Municipal Action Dispatch</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-tech" id="status-model-badge">AI: YOLO11s / YOLOv8</span>
+        <span class="badge badge-cpu">⚡ CPU Offline Core</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- Progress Stepper -->
+    <div class="stepper-bar">
+      <div class="step-node active" id="step-node-1">
+        <span class="step-num">1</span>
+        <span class="step-label">Capture Photo</span>
+      </div>
+      <div class="step-line" id="step-line-1"></div>
+      <div class="step-node" id="step-node-2">
+        <span class="step-num">2</span>
+        <span class="step-label">Location & Citizen</span>
+      </div>
+      <div class="step-line" id="step-line-2"></div>
+      <div class="step-node" id="step-node-3">
+        <span class="step-num">3</span>
+        <span class="step-label">AI Audit & Dispatch</span>
+      </div>
+    </div>
+
+    <!-- Alert / Banner message container -->
+    <div id="status-banner" class="banner hidden"></div>
+
+    <!-- STEP 1: Upload / Camera Capture Card -->
+    <section class="card step-section" id="section-step1">
+      <div class="card-header">
+        <div class="step-badge">STEP 1</div>
+        <h2>Capture Road Distress Photo</h2>
+        <p class="section-desc">Take a clear photo of the damaged pavement or upload an existing image.</p>
+      </div>
+
+      <div class="upload-dropzone" id="dropzone">
+        <input 
+          type="file" 
+          id="photo-input" 
+          accept="image/*" 
+          capture="environment" 
+          class="file-input-hidden" 
+        />
+        
+        <div class="dropzone-content" id="dropzone-prompt">
+          <div class="camera-icon">📸</div>
+          <h3>Snap Photo with Camera</h3>
+          <p>Tap to open smartphone camera or select photo from gallery</p>
+          <div class="dropzone-btn-row">
+            <button type="button" class="btn btn-primary" id="btn-camera-trigger">
+              📷 Open Camera / Gallery
+            </button>
+          </div>
+          <p class="hint-text">Supported: JPG, PNG, WEBP (Max 25 MB)</p>
+        </div>
+
+        <!-- Image Preview Box -->
+        <div class="preview-box hidden" id="preview-box">
+          <img id="image-preview" src="" alt="Selected Road Image Preview" />
+          <button type="button" class="btn-chip btn-retake" id="btn-retake">🔄 Retake / Change Photo</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: Location & Citizen Contact -->
+    <section class="card step-section" id="section-step2">
+      <div class="card-header">
+        <div class="step-badge">STEP 2</div>
+        <h2>Location & Citizen Details</h2>
+        <p class="section-desc">GPS tagging ensures the complaint reaches the exact municipal engineering ward.</p>
+      </div>
+
+      <div class="form-grid">
+        <!-- GPS Coordinates Column -->
+        <div class="form-group span-full">
+          <label>Pavement GPS Location</label>
+          <div class="location-action-bar">
+            <button type="button" class="btn btn-secondary" id="btn-gps">
+              📍 Use My Current GPS Location
+            </button>
+            <span id="gps-status" class="gps-status-indicator">Coordinates not captured</span>
+          </div>
+
+          <div class="coords-display-grid">
+            <div class="input-subgroup">
+              <span class="subgroup-label">Latitude</span>
+              <input type="number" step="any" id="input-lat" placeholder="e.g. 12.9716" />
+            </div>
+            <div class="input-subgroup">
+              <span class="subgroup-label">Longitude</span>
+              <input type="number" step="any" id="input-lon" placeholder="e.g. 77.5946" />
+            </div>
+          </div>
+          <div id="maps-link-wrapper" class="hidden maps-link-box">
+            <a href="#" target="_blank" id="maps-link" class="link-maps">🗺️ View Pin in Google Maps ↗</a>
+          </div>
+        </div>
+
+        <!-- Manual City & Landmark Fallback -->
+        <div class="form-group">
+          <label for="input-city">City / District / Ward</label>
+          <input type="text" id="input-city" placeholder="e.g. Bengaluru, Mysuru, Mumbai, Delhi..." />
+          <span class="input-hint">Used to match the municipal grievance corporation if GPS is offline.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="input-landmark">Street / Landmark / Cross</label>
+          <input type="text" id="input-landmark" placeholder="e.g. 100ft Road near Metro Station" />
+        </div>
+
+        <!-- Citizen Contact -->
+        <div class="form-group">
+          <label for="input-name">Citizen Complainant Name</label>
+          <input type="text" id="input-name" placeholder="e.g. Ramesh Kumar" />
+        </div>
+
+        <div class="form-group">
+          <label for="input-phone">Mobile / WhatsApp Number</label>
+          <input type="tel" id="input-phone" placeholder="e.g. +91 98765 43210" />
+        </div>
+
+        <div class="form-group span-full">
+          <label for="input-email">Citizen Email ID (For Grievance Copy)</label>
+          <input type="email" id="input-email" placeholder="e.g. citizen@example.com" />
+          <span class="input-hint">A carbon copy of the official complaint will be sent to your inbox.</span>
+        </div>
+      </div>
+
+      <!-- Analyze Button -->
+      <div class="action-footer">
+        <button type="button" class="btn btn-primary btn-lg" id="btn-analyze">
+          🚀 Run AI Damage Audit
+        </button>
+      </div>
+    </section>
+
+    <!-- STEP 3: AI Inspection Result & Dispatch Card (Hidden until analyzed) -->
+    <section class="card step-section hidden" id="section-step3">
+      <div class="card-header">
+        <div class="step-badge step-badge-success">STEP 3</div>
+        <h2>AI Inspection & Municipal Report Preview</h2>
+        <p class="section-desc">Review detected damage boxes, priority grade, and verify the complaint draft before dispatch.</p>
+      </div>
+
+      <!-- Priority & Summary Banner -->
+      <div class="audit-summary-card">
+        <div class="priority-container">
+          <span class="priority-label">Assessed Urgency Priority:</span>
+          <span class="priority-pill" id="priority-badge">HIGH</span>
+        </div>
+        <p class="urgency-note" id="urgency-note-text">Critical structural pothole detected.</p>
+      </div>
+
+      <!-- Damage Chips Breakdown -->
+      <div class="damage-chips-row">
+        <div class="damage-chip chip-d40">
+          <span class="chip-dot"></span>
+          <span class="chip-name">Potholes (D40):</span>
+          <strong id="count-d40">0</strong>
+        </div>
+        <div class="damage-chip chip-d20">
+          <span class="chip-dot"></span>
+          <span class="chip-name">Alligator Cracks (D20):</span>
+          <strong id="count-d20">0</strong>
+        </div>
+        <div class="damage-chip chip-d00">
+          <span class="chip-dot"></span>
+          <span class="chip-name">Longitudinal (D00):</span>
+          <strong id="count-d00">0</strong>
+        </div>
+        <div class="damage-chip chip-d10">
+          <span class="chip-dot"></span>
+          <span class="chip-name">Transverse (D10):</span>
+          <strong id="count-d10">0</strong>
+        </div>
+      </div>
+
+      <!-- Visual Inspection Result (Annotated Image) -->
+      <div class="annotated-image-container">
+        <label class="container-title">AI-Annotated Photographic Evidence</label>
+        <div class="image-wrapper">
+          <img id="annotated-image" src="" alt="AI-Annotated Road Damage" />
+        </div>
+      </div>
+
+      <!-- Municipal Corporation Routing Card -->
+      <div class="municipality-routing-card">
+        <div class="muni-header">
+          <div class="muni-icon">🏛️</div>
+          <div>
+            <h3 id="muni-name">Bruhat Bengaluru Mahanagara Palike (BBMP)</h3>
+            <p id="muni-reason" class="muni-reason">Matched local municipal corporation</p>
+          </div>
+        </div>
+
+        <div class="muni-details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Helpline / Control Room</span>
+            <span class="detail-value" id="muni-helpline">080-22660000 / 1533</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Official Grievance Portal</span>
+            <a href="#" target="_blank" class="detail-link" id="muni-portal">bbmp.gov.in ↗</a>
+          </div>
+        </div>
+
+        <!-- Editable Grievance Email Field -->
+        <div class="form-group email-override-group">
+          <label for="recipient-email">Recipient Municipal Officer Email <span class="badge-edit">Editable</span></label>
+          <input type="email" id="recipient-email" value="" />
+          <span class="input-hint">Default routed to official municipal commissioner/grievance cell. You can adjust this to a specific zonal engineer if known.</span>
+        </div>
+      </div>
+
+      <!-- Complaint Email Draft Preview -->
+      <div class="email-draft-card">
+        <div class="draft-header">
+          <h3>📨 Drafted Official Grievance Letter</h3>
+          <button type="button" class="btn-chip" id="btn-copy-draft">📋 Copy Text</button>
+        </div>
+
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" id="draft-subject" class="input-subject" />
+        </div>
+
+        <div class="form-group">
+          <label>Letter Body</label>
+          <textarea id="draft-body" rows="12" class="textarea-body"></textarea>
+        </div>
+      </div>
+
+      <!-- Action Footer for Step 3 -->
+      <div class="action-footer step3-actions">
+        <button type="button" class="btn btn-secondary" id="btn-back-to-step2">
+          ⬅ Edit Details
+        </button>
+        <button type="button" class="btn btn-success btn-lg" id="btn-confirm-send">
+          ✉️ Confirm & Dispatch Municipal Report
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Confirmation / Success Modal -->
+    <div class="modal-overlay hidden" id="modal-overlay">
+      <div class="modal-card">
+        <div class="modal-icon" id="modal-icon">✅</div>
+        <h3 id="modal-title">Grievance Report Dispatched!</h3>
+        <p id="modal-message">Your road damage complaint has been delivered to the municipal authority.</p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-primary" id="btn-modal-close">Start New Report</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>Civic Road Damage Detection System • Powered by PyTorch & Ultralytics YOLO</p>
+    <p class="footer-note">Built for Anveshan DataSprint 2.0 • Civic Redressal Engineering Track</p>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

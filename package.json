@@ -1,0 +1,19 @@
+{
+  "name": "road_damage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dsh": "dsh",
+    "dsh:web": "dsh web",
+    "dsh:tui": "dsh tui",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh": "^0.2.2-rc.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

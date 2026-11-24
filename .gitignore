@@ -1,0 +1,56 @@
+# ==============================================================================
+# Git Ignore Configuration — Anveshan DataSprint 2.0 Competition Repo
+# ==============================================================================
+
+# Secrets and environment variables (CRITICAL: NEVER COMMIT CREDENTIALS)
+.env
+app/.env
+.env*.local
+*.pem
+*.key
+kaggle.json
+access_token
+
+# Competition Datasets & Large Image Directories
+train_images/
+val_images/
+val_images_degraded/
+test_images/
+*.zip
+
+# Submissions, Intermediate Evaluations & Work Folders
+submission_*.csv
+*_pred*.csv
+*_speed*.json
+val_robust_*.csv
+val_robust_*.json
+test_robust_*.csv
+test_robust_*.json
+baseline_work/
+robust_work/
+runs/
+throughput_test/
+kaggle_working/
+
+# Ignore all pretrained & duplicate checkpoints; keep ONLY inference.py's single weight file
+*.pt
+!weights/
+!weights/best_yolo11s.pt
+
+# Python virtual environment & cache
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+
+# Node.js & Agent Harness Tooling
+node_modules/
+.agents/
+.dsh/
+dist/
+build/
+*.log
+npm-debug.log*
